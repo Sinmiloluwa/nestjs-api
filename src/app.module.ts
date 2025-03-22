@@ -7,12 +7,15 @@ import { EmployeesModule } from './employees/employees.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { MyLoggerModule } from './my-logger/my-logger.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
     UsersModule,
     DatabaseModule,
     EmployeesModule,
+    ScheduleModule.forRoot(),
     ThrottlerModule.forRoot([
       {
         name: 'short',
@@ -30,7 +33,8 @@ import { MyLoggerModule } from './my-logger/my-logger.module';
         limit: 100
       }
     ]),
-    MyLoggerModule
+    MyLoggerModule,
+    TasksModule
   ],
   controllers: [AppController],
   providers: [AppService, {
