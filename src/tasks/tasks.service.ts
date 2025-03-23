@@ -6,7 +6,7 @@ export class TasksService {
     private readonly logger = new Logger(TasksService.name);
 
     @Cron(CronExpression.EVERY_10_SECONDS)
-    handleCron() {
-        this.logger.debug('Called when the current second is 45');
+    triggerCron() {
+        this.logger.debug('Called when the current second is 10');
     }
 }

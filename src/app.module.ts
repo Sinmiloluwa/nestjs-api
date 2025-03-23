@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { MyLoggerModule } from './my-logger/my-logger.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './tasks/tasks.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -34,7 +35,8 @@ import { TasksModule } from './tasks/tasks.module';
       }
     ]),
     MyLoggerModule,
-    TasksModule
+    TasksModule,
+    EventsModule
   ],
   controllers: [AppController],
   providers: [AppService, {
