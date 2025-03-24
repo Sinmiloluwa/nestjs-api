@@ -10,6 +10,7 @@ import { MyLoggerModule } from './my-logger/my-logger.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './tasks/tasks.module';
 import { EventsModule } from './events/events.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -36,7 +37,8 @@ import { EventsModule } from './events/events.module';
     ]),
     MyLoggerModule,
     TasksModule,
-    EventsModule
+    EventsModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService, {
