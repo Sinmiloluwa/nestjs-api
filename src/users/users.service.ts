@@ -27,4 +27,12 @@ export class UsersService {
             }
         })
     }
+
+    async findOne(username: string) {
+        return await this.databaseService.user.findFirst({
+            where: {
+                username
+            }
+        })
+    }
 }

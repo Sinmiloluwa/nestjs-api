@@ -11,6 +11,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './tasks/tasks.module';
 import { EventsModule } from './events/events.module';
 import { AuthModule } from './auth/auth.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -18,6 +19,15 @@ import { AuthModule } from './auth/auth.module';
     DatabaseModule,
     EmployeesModule,
     ScheduleModule.forRoot(),
+    MailerModule.forRoot({
+      transport: {
+        host: 'sandbox.smtp.mailtrap.io',
+        auth: {
+          user: "9346151b04fe1b",
+          pass: "069f4219ee242c"
+        }
+      }
+    }),
     ThrottlerModule.forRoot([
       {
         name: 'short',
@@ -36,7 +46,7 @@ import { AuthModule } from './auth/auth.module';
       }
     ]),
     MyLoggerModule,
-    TasksModule,
+    // TasksModule,
     EventsModule,
     AuthModule
   ],
