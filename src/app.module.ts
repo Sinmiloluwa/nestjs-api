@@ -12,12 +12,14 @@ import { TasksModule } from './tasks/tasks.module';
 import { EventsModule } from './events/events.module';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
     UsersModule,
     DatabaseModule,
     EmployeesModule,
+    CacheModule.register(),
     ScheduleModule.forRoot(),
     MailerModule.forRoot({
       transport: {
