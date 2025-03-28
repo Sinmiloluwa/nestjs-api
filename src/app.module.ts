@@ -13,6 +13,8 @@ import { EventsModule } from './events/events.module';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
@@ -21,12 +23,16 @@ import { CacheModule } from '@nestjs/cache-manager';
     EmployeesModule,
     CacheModule.register(),
     ScheduleModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
     MailerModule.forRoot({
       transport: {
-        host: 'sandbox.smtp.mailtrap.io',
+        host: process.env.MAIL_HOST,
         auth: {
-          user: "9346151b04fe1b",
-          pass: "069f4219ee242c"
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS
         }
       }
     }),
